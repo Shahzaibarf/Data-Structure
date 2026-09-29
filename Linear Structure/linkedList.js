@@ -12,22 +12,26 @@ class LinkedList {
     this.head = null;
   }
 
-  append(data) {
-    const newNode = new Node(data);
-
-    if (this.head === null) {
-      this.head = newNode;
-      return;
+  // Add Node
+    append(data) {
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        return;
+      }
+      let current = this.head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = newNode;
     }
+}
 
-    let current = this.head;
-
-    while (current.next !== null) {
-      current = current.next;
-    }
-
-    current.next = newNode;
-  }
+// insertAtBeginning
+insertAtBeginning(value) {
+    const newNode = new Node(value);
+    newNode.next = this.head;
+    this.head = newNode;
 }
 
 // calling
