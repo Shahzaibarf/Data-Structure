@@ -33,7 +33,18 @@ insertAtBeginning(value) {
     newNode.next = this.head;
     this.head = newNode;
 }
-
+// Reverse 
+reverse() {
+    let previous = null;
+    let current = this.head;
+    while (current !== null) {
+        let next = current.next;
+        current.next = previous;
+        previous = current;
+        current = next;
+    }
+    this.head = previous;
+}
 // Search Node 
 search(value) {
     let current = this.head;
