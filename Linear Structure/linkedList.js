@@ -25,40 +25,55 @@ class LinkedList {
       }
       current.next = newNode;
     }
-}
-
-// insertAtBeginning
-insertAtBeginning(value) {
-    const newNode = new Node(value);
-    newNode.next = this.head;
-    this.head = newNode;
-}
-// Reverse 
-reverse() {
-    let previous = null;
-    let current = this.head;
-    while (current !== null) {
-        let next = current.next;
-        current.next = previous;
-        previous = current;
-        current = next;
-    }
-    this.head = previous;
-}
-// Search Node 
-search(value) {
-    let current = this.head;
-    while (current !== null) {
-        if (current.value === value) {
-            return true;
+  
+   // findmiddleValue
+    findMiddleValue() {
+        let slow = this.head;
+        let fast = this.head;
+        while (
+            fast !== null &&
+            fast.next !== null
+        ) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        current = current.next;
-    }
-    return false;
-}
+        return slow.value;
+      }
 
-// Delete Node
-delete(value) {
+   // insertAtBeginning
+    insertAtBeginning(value) {
+      const newNode = new Node(value);
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+  // Reverse 
+    reverse() {
+        let previous = null;
+        let current = this.head;
+        while (current !== null) {
+            let next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        this.head = previous;
+    }
+
+  // Search Node 
+    search(value) {
+      let current = this.head;
+      while (current !== null) {
+          if (current.value === value) {
+              return true;
+          }
+          current = current.next;
+      }
+      return false;
+    }
+
+  // Delete Node
+  delete(value) {
     if (this.head === null) {
         return;
     }
@@ -68,13 +83,13 @@ delete(value) {
     }
     let current = this.head;
     while (current.next !== null) {
-        if (current.next.value === value) {
-            current.next = current.next.next;
-            return;
-        }
+      if (current.next.value === value) {
+          current.next = current.next.next;
+          return;
+      }
         current = current.next;
     }
-}
+  }
 
 // insert at specific position
 insertAtPosition(value, position) {
@@ -93,6 +108,30 @@ insertAtPosition(value, position) {
     }
     newNode.next = current.next;
     current.next = newNode;
+}
+
+ // Print
+    print() {
+      let current = this.head;
+      while (current !== null) {
+          console.log(current.value);
+          current = current.next;
+      }
+    }
+
+   // hasCycle && Floyd's Cycle Detection Algorithm
+    hasCycle() {
+    let slow = this.head;
+    let fast = this.head;
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) {
+            return true;
+        }
+    }
+    return false;
+  }
 }
 
 // calling
